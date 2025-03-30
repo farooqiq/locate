@@ -1,0 +1,37 @@
+// Frontend: index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Tracker</title>
+    <script>
+        function sendLocation(position) {
+            const { latitude, longitude, accuracy } = position.coords;
+            
+            fetch('https://your-backend-url.com/location', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ latitude, longitude, accuracy })
+            }).then(response => response.json())
+              .then(data => console.log('Location sent:', data))
+              .catch(error => console.error('Error:', error));
+        }
+        
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(sendLocation, 
+                    error => console.error('Error getting location:', error),
+                    { enableHighAccuracy: true });
+            } else {
+                console.error("Geolocation is not supported by this browser.");
+            }
+        }
+        
+        window.onload = getLocation; // Auto-trigger location fetch on page load
+    </script>
+</head>
+<body>
+    <h2>Fetching Location...</h2>
+</body>
+</html>
