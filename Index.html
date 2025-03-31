@@ -9,7 +9,7 @@
         function sendLocation(position) {
             const { latitude, longitude, accuracy } = position.coords;
             
-            fetch('https://your-backend-url.com/location', {
+            fetch('http://localhost:3000/location', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ latitude, longitude, accuracy })
