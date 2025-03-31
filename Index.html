@@ -9,7 +9,7 @@
         function sendLocation(position) {
             const { latitude, longitude, accuracy } = position.coords;
             
-            fetch('http://localhost:3000/location', {
+            fetch('https://one-click-location.onrender.com', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ latitude, longitude, accuracy })
